@@ -1,0 +1,461 @@
+#N canvas 237 1083 730 642 10;
+#X obj 69 38 cnv 15 100 60 empty empty PG-299 20 12 0 14 -66577 -262144
+0;
+#N canvas 167 1138 886 571 (subpatch) 0;
+#N canvas 0 22 1239 756 midimagic 0;
+#X obj 383 345 cnv 15 360 30 empty empty empty 20 12 0 14 -261234 -66577
+0;
+#X obj 382 284 cnv 15 360 60 empty empty empty 20 12 0 14 -204786 -66577
+0;
+#X obj 381 171 cnv 15 360 30 empty empty empty 20 12 0 14 -204786 -66577
+0;
+#X obj 381 90 cnv 15 360 80 empty empty empty 20 12 0 14 -261234 -66577
+0;
+#X obj 381 202 cnv 15 360 80 empty empty empty 20 12 0 14 -261234 -66577
+0;
+#X msg 390 97 240;
+#X text 419 96 0xF0 [Exclusive];
+#X msg 390 120 65;
+#X text 419 116 0x41 [Roland ID#];
+#X msg 390 143 54;
+#X text 419 136 0x36 [Individual Tone Parameters];
+#X floatatom 392 176 5 0 15 0 - - -;
+#X text 427 175 0x0n [n=MIDI channel (n=0-F \, Chan 1=00 Chan 16=0F)]
+;
+#X text 426 205 0x23 [Format type];
+#X msg 393 205 35;
+#X text 426 225 0x20 [unknown];
+#X msg 394 230 32;
+#X msg 394 253 1;
+#X text 426 245 0x01 [unknown];
+#X floatatom 393 288 5 0 0 0 - - -;
+#X floatatom 395 319 5 0 127 0 - - -;
+#X text 430 287 0xXX [Parameter number (0x00-0x23)];
+#X text 431 318 0xYY [Value (0-127)];
+#X msg 394 351 247;
+#X text 426 350 0xF7 [End of Exclusive];
+#X obj 207 397 pack f f f f f f f f f f;
+#X obj 207 467 outlet;
+#X obj 155 46 cnv 15 120 120 empty empty empty 20 12 0 14 -262130 -66577
+0;
+#X obj 165 77 r channelID;
+#X obj 166 99 r parameterID;
+#X obj 167 121 r parameterValue;
+#X obj 166 54 loadbang;
+#X obj 206 437 drip 1;
+#X connect 5 0 25 0;
+#X connect 7 0 25 1;
+#X connect 9 0 25 2;
+#X connect 11 0 25 3;
+#X connect 14 0 25 4;
+#X connect 16 0 25 5;
+#X connect 17 0 25 6;
+#X connect 19 0 25 7;
+#X connect 20 0 25 8;
+#X connect 23 0 25 9;
+#X connect 25 0 32 0;
+#X connect 28 0 11 0;
+#X connect 29 0 19 0;
+#X connect 30 0 20 0;
+#X connect 30 0 5 0;
+#X connect 31 0 5 0;
+#X connect 31 0 7 0;
+#X connect 31 0 9 0;
+#X connect 31 0 11 0;
+#X connect 31 0 14 0;
+#X connect 31 0 16 0;
+#X connect 31 0 17 0;
+#X connect 31 0 23 0;
+#X connect 32 0 26 0;
+#X restore 561 19 pd midimagic;
+#X obj 561 60 midiout;
+#N canvas 145 965 664 705 (subpatch) 0;
+#X obj 1 1 cnv 15 298 358 empty empty DCO 200 12 0 14 -66577 -262144
+0;
+#X obj 96 39 vradio 15 1 0 4 empty empty Range 0 -8 0 10 -33289 -258113
+-262144 1;
+#X obj 130 41 vsl 15 128 0 127 0 0 empty empty LFO 0 -9 0 10 -33289
+-258113 -262144 0 0;
+#X obj 158 41 vsl 15 128 0 127 0 0 empty empty Env 0 -9 0 10 -33289
+-258113 -262144 0 0;
+#X obj 200 37 vradio 15 1 0 4 empty empty Env_Mode -12 -8 0 10 -33289
+-258113 -262144 2;
+#X obj 246 37 vsl 15 128 0 127 0 0 empty empty After 0 -9 0 10 -33289
+-258113 -262144 11500 0;
+#X obj 7 205 vradio 15 1 0 4 empty empty Pulse 0 -8 0 10 -33289 -258113
+-262144 0;
+#X obj 41 205 vradio 15 1 0 6 empty empty Saw 0 -8 0 10 -33289 -258113
+-262144 4;
+#X obj 70 205 vradio 15 1 0 6 empty empty Sub 0 -8 0 10 -33289 -258113
+-262144 1;
+#X obj 130 205 vradio 15 1 0 4 empty empty SubLvl 0 -8 0 10 -33289
+-258113 -262144 2;
+#X obj 171 205 vradio 15 1 0 4 empty empty NoiseLvl 0 -8 0 10 -33289
+-258113 -262144 0;
+#X obj 239 202 vsl 15 128 0 127 0 0 empty empty PWM 0 -9 0 10 -33289
+-258113 -262144 8500 0;
+#X obj 265 202 vsl 15 128 0 127 0 0 empty empty Rate 0 -9 0 10 -33289
+-258113 -262144 12500 0;
+#X obj 321 62 cnv 15 160 280 empty empty empty 20 12 0 14 -204800 -66577
+0;
+#X msg 331 73 6;
+#X text 359 72 0x06 DCO Range;
+#X msg 331 96 11;
+#X msg 331 119 12;
+#X text 359 98 0x0B LFO Mod;
+#X text 359 120 0x0C DCO ENV Mod;
+#X msg 331 142 0;
+#X text 358 143 0x00 DCO Env. Mode;
+#X msg 331 165 13;
+#X text 357 166 0x0D DCO After Mod.;
+#X msg 331 188 3;
+#X text 358 189 0x03 DCO Pulse;
+#X msg 331 209 4;
+#X text 359 212 0x04 DCO SawTooth;
+#X msg 331 232 5;
+#X text 359 232 0x05 DCO Sub;
+#X msg 331 256 7;
+#X text 360 254 0x07 DCO Sub Level;
+#X msg 331 277 8;
+#X text 359 278 0x08 DCO Noise;
+#X msg 331 298 14;
+#X text 361 298 0x0E DCO PWM Depth;
+#X msg 332 320 15;
+#X text 363 319 0x0F DCO PWM Rate;
+#X obj 96 491 cnv 15 160 120 empty empty empty 20 12 0 14 -203904 -66577
+0;
+#X obj 98 496 pack f f;
+#X obj 98 522 unpack;
+#X obj 108 554 s parameterValue;
+#X obj 163 576 s parameterID;
+#X obj 203 502 change;
+#X connect 1 0 14 0;
+#X connect 1 0 39 0;
+#X connect 2 0 16 0;
+#X connect 2 0 39 0;
+#X connect 3 0 17 0;
+#X connect 3 0 39 0;
+#X connect 4 0 20 0;
+#X connect 4 0 39 0;
+#X connect 5 0 22 0;
+#X connect 5 0 39 0;
+#X connect 6 0 24 0;
+#X connect 6 0 39 0;
+#X connect 7 0 26 0;
+#X connect 7 0 39 0;
+#X connect 8 0 28 0;
+#X connect 8 0 39 0;
+#X connect 9 0 30 0;
+#X connect 9 0 39 0;
+#X connect 10 0 32 0;
+#X connect 10 0 39 0;
+#X connect 11 0 34 0;
+#X connect 11 0 39 0;
+#X connect 12 0 36 0;
+#X connect 12 0 39 0;
+#X connect 14 0 43 0;
+#X connect 16 0 43 0;
+#X connect 17 0 43 0;
+#X connect 20 0 43 0;
+#X connect 22 0 43 0;
+#X connect 24 0 43 0;
+#X connect 26 0 43 0;
+#X connect 28 0 43 0;
+#X connect 30 0 43 0;
+#X connect 32 0 43 0;
+#X connect 34 0 43 0;
+#X connect 36 0 43 0;
+#X connect 39 0 40 0;
+#X connect 40 0 41 0;
+#X connect 40 1 42 0;
+#X connect 43 0 39 1;
+#X coords 0 1 100 -1 300 360 1 0 0;
+#X restore 1 1 graph;
+#N canvas 504 828 450 300 (subpatch) 0;
+#X obj 3 3 cnv 15 88 178 empty empty LFO 35 12 0 14 -66577 -262144
+0;
+#X obj 15 41 vsl 15 128 0 127 0 0 empty empty Rate 0 -9 0 10 -33289
+-258113 -262144 500 0;
+#X obj 55 41 vsl 15 128 0 127 0 0 empty empty Delay 0 -9 0 10 -33289
+-258113 -262144 8500 0;
+#X obj 238 110 cnv 15 120 140 empty empty empty 20 12 0 14 -203904
+-66577 0;
+#X obj 244 230 s parameterValue;
+#X obj 255 202 s parameterID;
+#X obj 95 196 cnv 15 130 60 empty empty empty 20 12 0 14 -204800 -66577
+0;
+#X msg 103 202 24;
+#X msg 103 230 25;
+#X text 134 201 0x18 LFO Rate;
+#X text 131 229 0x19 LFO Delay;
+#X obj 244 146 pack f f;
+#X obj 244 174 unpack f f;
+#X obj 244 118 change;
+#X connect 1 0 11 0;
+#X connect 1 0 7 0;
+#X connect 2 0 11 0;
+#X connect 2 0 8 0;
+#X connect 7 0 13 0;
+#X connect 8 0 13 0;
+#X connect 11 0 12 0;
+#X connect 12 0 4 0;
+#X connect 12 1 5 0;
+#X connect 13 0 11 1;
+#X coords 0 1 100 -1 90 180 1 2 2;
+#X restore 2 2 graph;
+#N canvas 269 445 601 477 (subpatch) 0;
+#X obj 3 3 cnv 15 138 178 empty empty VCA 60 12 0 14 -66577 -262144
+0;
+#X obj 20 38 vsl 15 128 0 127 0 0 empty empty Level 0 -9 0 10 -33289
+-258113 -262144 9000 0;
+#X obj 55 36 vradio 15 1 0 4 empty empty EnvMode 0 -8 0 10 -33289 -258113
+-262144 3;
+#X obj 105 38 vsl 15 128 0 127 0 0 empty empty After 0 -9 0 10 -33289
+-258113 -262144 11800 0;
+#X obj 294 89 cnv 15 165 90 empty empty empty 20 12 0 14 -204800 -66577
+0;
+#X text 330 99 0x16 VCA Level;
+#X text 331 122 0x02 VCA Env. Mode;
+#X text 331 146 0x17 VCA Aftertouch;
+#X msg 303 100 22;
+#X msg 303 123 2;
+#X msg 303 146 23;
+#X obj 304 279 cnv 15 120 140 empty empty empty 20 12 0 14 -203904
+-66577 0;
+#X obj 312 307 pack f f;
+#X obj 312 338 unpack f f;
+#X obj 312 398 s parameterValue;
+#X obj 335 373 s parameterID;
+#X obj 357 280 change;
+#X connect 1 0 12 0;
+#X connect 1 0 8 0;
+#X connect 2 0 12 0;
+#X connect 2 0 9 0;
+#X connect 3 0 12 0;
+#X connect 3 0 10 0;
+#X connect 8 0 16 0;
+#X connect 9 0 16 0;
+#X connect 10 0 16 0;
+#X connect 12 0 13 0;
+#X connect 13 0 14 0;
+#X connect 13 1 15 0;
+#X connect 16 0 12 1;
+#X coords 0 1 100 -1 140 180 1 2 2;
+#X restore 1 362 graph;
+#N canvas 361 352 451 334 (subpatch) 0;
+#X obj 1 1 cnv 15 98 178 empty empty Chorus 20 12 0 14 -66577 -262144
+0;
+#X obj 7 124 tgl 15 0 empty empty Enable 17 7 0 10 -33289 -258113 -262144
+1 1;
+#X obj 66 41 vsl 15 128 0 127 0 0 empty empty Rate 0 -9 0 10 -33289
+-258113 -262144 9300 0;
+#X obj 157 72 cnv 15 180 60 empty empty empty 20 12 0 14 -204800 -66577
+0;
+#X text 201 78 0x0A Chorus Switch;
+#X text 201 102 0x22 Chorus Rate;
+#X obj 155 163 cnv 15 200 140 empty empty empty 20 12 0 14 -203904
+-66577 0;
+#X msg 172 79 10;
+#X msg 172 106 34;
+#X obj 170 174 pack f f;
+#X obj 170 201 unpack f f;
+#X obj 205 273 s parameterValue;
+#X obj 228 253 s parameterID;
+#X obj 263 172 change;
+#X connect 1 0 7 0;
+#X connect 1 0 9 0;
+#X connect 2 0 9 0;
+#X connect 2 0 8 0;
+#X connect 7 0 13 0;
+#X connect 8 0 13 0;
+#X connect 9 0 10 0;
+#X connect 10 0 11 0;
+#X connect 10 1 12 0;
+#X connect 13 0 9 0;
+#X coords 0 1 100 -1 100 180 1 0 0;
+#X restore 142 362 graph;
+#N canvas 30 53 608 389 (subpatch) 0;
+#X obj 1 1 cnv 15 248 178 empty empty Envelope 60 12 0 14 -66577 -262144
+0;
+#X obj 159 38 vsl 15 128 0 127 0 0 empty empty T4 0 -9 0 10 -33289
+-258113 -262144 0 0;
+#X obj 125 38 vsl 15 128 0 127 0 0 empty empty L3 0 -9 0 10 -33289
+-258113 -262144 6600 0;
+#X obj 109 38 vsl 15 128 0 127 0 0 empty empty T3 0 -9 0 10 -33289
+-258113 -262144 6200 0;
+#X obj 37 38 vsl 15 128 0 127 0 0 empty empty L1 0 -9 0 10 -33289 -258113
+-262144 1600 0;
+#X obj 21 38 vsl 15 128 0 127 0 0 empty empty T1 0 -9 0 10 -33289 -258113
+-262144 10400 0;
+#X obj 65 38 vsl 15 128 0 127 0 0 empty empty T2 0 -9 0 10 -33289 -258113
+-262144 2300 0;
+#X obj 204 38 vsl 15 128 0 127 0 0 empty empty Key_Follow -20 -9 0
+10 -33289 -258113 -262144 12700 0;
+#X obj 81 38 vsl 15 128 0 127 0 0 empty empty L2 0 -9 0 10 -33289 -258113
+-262144 2500 0;
+#X obj 298 19 cnv 15 190 200 empty empty empty 20 12 0 14 -204800 -66577
+0;
+#X msg 303 27 26;
+#X msg 303 49 27;
+#X msg 303 71 28;
+#X msg 303 93 29;
+#X msg 303 115 30;
+#X msg 303 137 31;
+#X msg 303 159 32;
+#X msg 303 181 33;
+#X text 329 26 0x1A ENV T1 Attack Time;
+#X text 329 45 0x1B ENV L1 Attack Level;
+#X text 329 64 0x1C ENV T2 Break Time;
+#X text 329 92 0x1D ENV L2 Break Level;
+#X text 329 111 0x1E ENV T3 Decay Time;
+#X text 329 130 0x1F ENV L3 Sustain Level;
+#X text 329 158 0x20 ENV T4 Release Time;
+#X text 329 177 0x21 ENV Key Follow;
+#X obj 323 234 cnv 15 160 120 empty empty empty 20 12 0 14 -203904
+-66577 0;
+#X obj 378 238 change;
+#X obj 333 259 pack f f;
+#X obj 333 284 unpack f f;
+#X obj 390 315 s parameterID;
+#X obj 333 334 s parameterValue;
+#X connect 1 0 16 0;
+#X connect 1 0 28 0;
+#X connect 2 0 15 0;
+#X connect 2 0 28 0;
+#X connect 3 0 14 0;
+#X connect 3 0 28 0;
+#X connect 4 0 11 0;
+#X connect 4 0 28 0;
+#X connect 5 0 10 0;
+#X connect 5 0 28 0;
+#X connect 6 0 12 0;
+#X connect 6 0 28 0;
+#X connect 7 0 17 0;
+#X connect 7 0 28 0;
+#X connect 8 0 13 0;
+#X connect 8 0 28 0;
+#X connect 10 0 27 0;
+#X connect 11 0 27 0;
+#X connect 12 0 27 0;
+#X connect 13 0 27 0;
+#X connect 14 0 27 0;
+#X connect 15 0 27 0;
+#X connect 16 0 27 0;
+#X connect 17 0 27 0;
+#X connect 27 0 28 1;
+#X connect 28 0 29 0;
+#X connect 29 0 31 0;
+#X connect 29 1 30 0;
+#X coords 0 1 100 -1 250 180 1 0 0;
+#X restore 243 362 graph;
+#N canvas 331 759 484 432 (subpatch) 0;
+#X obj 1 1 cnv 15 58 178 empty empty Bender 5 12 0 14 -66577 -262144
+0;
+#X obj 7 40 vsl 15 128 0 12 0 0 empty empty Range 0 -9 0 10 -33289
+-258113 -262144 0 1;
+#X obj 87 61 cnv 15 150 40 empty empty empty 20 12 0 14 -204800 -66577
+0;
+#X obj 87 117 cnv 15 160 120 empty empty empty 20 12 0 14 -203904 -66577
+0;
+#X text 126 72 0x23 Bender Range;
+#X msg 99 70 35;
+#X obj 156 129 change;
+#X obj 96 122 pack;
+#X obj 96 147 unpack;
+#X obj 129 177 s parameterID;
+#X obj 129 202 s parameterValue;
+#X connect 1 0 5 0;
+#X connect 1 0 7 0;
+#X connect 5 0 6 0;
+#X connect 6 0 7 1;
+#X connect 7 0 8 0;
+#X connect 8 0 10 0;
+#X connect 8 1 9 0;
+#X coords 0 1 100 -1 60 180 1 0 0;
+#X restore 494 362 graph;
+#N canvas 345 458 733 561 (subpatch) 0;
+#X obj 1 1 cnv 15 250 218 empty empty VCF 100 12 0 14 -66577 -262144
+0;
+#X obj 221 60 vsl 15 128 0 127 0 0 empty empty After -4 -9 0 10 -33289
+-258113 -262144 0 1;
+#X obj 191 60 vsl 15 128 0 127 0 0 empty empty K.F 0 -9 0 10 -33289
+-258113 -262144 0 0;
+#X obj 125 60 vsl 15 128 0 127 0 0 empty empty Env 0 -9 0 10 -33289
+-258113 -262144 0 0;
+#X obj 96 60 vsl 15 128 0 127 0 0 empty empty LFO 0 -9 0 10 -33289
+-258113 -262144 0 1;
+#X obj 67 60 vsl 15 128 0 127 0 0 empty empty Res 0 -9 0 10 -33289
+-258113 -262144 0 0;
+#X obj 37 60 vsl 15 128 0 127 0 0 empty empty Freq 0 -9 0 10 -33289
+-258113 -262144 0 0;
+#X obj 14 129 vradio 15 1 0 4 empty empty HPF 0 -8 0 10 -33289 -258113
+-262144 0;
+#X obj 168 129 vradio 15 1 0 4 empty empty EnvMode -21 -8 0 10 -33289
+-258113 -262144 0;
+#X obj 427 10 cnv 15 180 230 empty empty empty 20 12 0 14 -204800 -66577
+0;
+#X obj 186 313 cnv 15 150 120 empty empty empty 20 12 0 14 -203904
+-66577 0;
+#X text 476 17 0x09 HPF Cutoff;
+#X text 475 41 0x10 VCF Cutoff;
+#X text 475 67 0x11 VCF Resonance;
+#X text 475 95 0x12 VCF LFO Mod;
+#X text 472 122 0x13 VCF Env Mod;
+#X text 472 149 0x01 VCF Env. Mode;
+#X text 473 174 0x14 VCF Key Follow;
+#X text 472 201 0x15 VCF Aftertouch;
+#X msg 445 15 9;
+#X msg 445 42 16;
+#X msg 445 69 17;
+#X msg 445 96 18;
+#X msg 445 123 19;
+#X msg 445 150 1;
+#X msg 445 177 20;
+#X msg 445 204 21;
+#X obj 273 322 change;
+#X obj 192 322 pack f f;
+#X obj 192 350 unpack f f;
+#X obj 194 405 s parameterValue;
+#X obj 249 384 s parameterID;
+#X connect 1 0 26 0;
+#X connect 1 0 28 0;
+#X connect 2 0 25 0;
+#X connect 2 0 28 0;
+#X connect 3 0 23 0;
+#X connect 3 0 28 0;
+#X connect 4 0 22 0;
+#X connect 4 0 28 0;
+#X connect 5 0 21 0;
+#X connect 5 0 28 0;
+#X connect 6 0 20 0;
+#X connect 6 0 28 0;
+#X connect 7 0 19 0;
+#X connect 7 0 28 0;
+#X connect 8 0 24 0;
+#X connect 8 0 28 0;
+#X connect 19 0 27 0;
+#X connect 20 0 27 0;
+#X connect 21 0 27 0;
+#X connect 22 0 27 0;
+#X connect 23 0 27 0;
+#X connect 24 0 27 0;
+#X connect 25 0 27 0;
+#X connect 26 0 27 0;
+#X connect 27 0 28 1;
+#X connect 28 0 29 0;
+#X connect 29 0 30 0;
+#X connect 29 1 31 0;
+#X coords 0 1 100 -1 252 220 1 0 0;
+#X restore 302 141 graph;
+#N canvas 108 541 491 341 (subpatch) 0;
+#X obj 3 3 cnv 15 251 137 empty empty PG-298_Alpha_Juno_Programmer
+20 12 0 14 -66577 -262144 0;
+#X obj 25 69 nbx 5 14 0 15 0 0 empty empty MIDI_Channel_Number 0 -8
+0 16 -33289 -258113 -262144 0 256;
+#X obj 296 104 s channelID;
+#X connect 1 0 2 0;
+#X coords 0 1 100 -1 252 139 1 2 2;
+#X restore 302 1 graph;
+#X connect 0 0 1 0;
+#X coords 0 1 100 -1 555 543 1 0 0;
+#X restore 64 32 graph;

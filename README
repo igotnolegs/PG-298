@@ -1,0 +1,3 @@
+A PG-300-style programmer for the Roland Alpha Juno
+
+Made using , Puredata-extended 0.42.5 If you are using this on a mac you may need to point PD to your IAC bus and then route it to Juno with a program like MIDIPatchbay ( notahat.com/midi_patchbay )
